@@ -61,7 +61,6 @@
             if (links[page]) {
                 const url = `${links[page]}${path}/?ref=redirect`
 
-                console.log(url)
                 message.innerHTML = `If you are not redirected automatically, please <a href="${url}">click here.`
                 window.location.href = url;
             } else {
