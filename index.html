@@ -63,7 +63,7 @@
 
                 console.log(url)
                 message.innerHTML = `If you are not redirected automatically, please <a href="${url}">click here.`
-                // window.location.href = url;
+                window.location.href = url;
             } else {
                 throw new Error(`The page "${page}" does not exist.`);
             }
