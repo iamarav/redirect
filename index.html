@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect</title>
 
+    <meta name="description" content="Redirection page.">
+
     <style>
         * {
             font-family: system-ui, sans-serif;
+        }
+
+        body {
+            margin: 10px 20px;
         }
     </style>
 </head>
@@ -17,20 +23,25 @@
     <noscript>This page requires JavaScript to run. Please enable and try refreshing this page.</noscript>
 
     <h1>Redirecting...</h1>
-    <p id="message">If you are not redirected, please let me know <a href="./?page=twitter">here.</a> </p>
+    <p id="message"></a> </p>
 
     <script>
         const message = document.getElementById("message");
 
         const links = {
+            // Website
             "blog": "http://gauravsachdeva.in",
             "portfolio": "http://gauravsachdeva.in",
+            "static": "http://static.gauravsachdeva.in",
+
+            // Social Links
             "github": "https://github.com/iamarav",
+            "githubio": "https://iamarav.github.io",
             "codepen": "https://codepen.io/gauravsachdeva",
             "twitter": "https://x.com/Sachdeva_Sahab",
-            "instagram": "https://www.instagram.com/sachdeva_sahab/",
-            "linkedin": "https://www.linkedin.com/in/iamarav/",
-            "tumblr": "https://sachdeva-sahab.tumblr.com/",
+            "instagram": "https://www.instagram.com/sachdeva_sahab",
+            "linkedin": "https://www.linkedin.com/in/iamarav",
+            "tumblr": "https://sachdeva-sahab.tumblr.com",
             "pinterest": "https://pinterest.com/sachdevasahab",
         };
 
@@ -40,10 +51,19 @@
         }
 
         function redirect() {
-            const page = getQueryParam('page');
+            let page = getQueryParam('page');
+            const path = getQueryParam('path') || ''
+
+            if (page == null) {
+                page = "blog";
+            }
 
             if (links[page]) {
-                window.location.href = `${links[page]}?ref=redirect`;
+                const url = `${links[page]}${path}/?ref=redirect`
+
+                console.log(url)
+                message.innerHTML = `If you are not redirected automatically, please <a href="${url}">click here.`
+                // window.location.href = url;
             } else {
                 throw new Error(`The page "${page}" does not exist.`);
             }
