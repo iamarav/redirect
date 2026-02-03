@@ -23,7 +23,7 @@
 
         ul#all-links {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.25rem;
             padding: 0;
             list-style: none;
         }
@@ -34,7 +34,9 @@
     <noscript>This page requires JavaScript to run. Please enable and try refreshing this page.</noscript>
 
     <h1 id="heading">Redirecting...</h1>
-    <p id="message"></a> </p>
+    <p id="message"></p>
+
+    <hr />
     <ul id="all-links"></ul>
 
     <script>
@@ -91,7 +93,7 @@
             allLinks.innerHTML = Object
                 .entries(links)
                 .map(([key, link]) => `<li id="link-${key}"><a href="${link}">${key}</a></li>`)
-                .join("");
+                .join("•");
         }
     </script>
 </body>
