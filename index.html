@@ -17,8 +17,15 @@
             margin: 10px 20px;
         }
 
-        .has-error h1 {
+        body.has-error h1 {
             color: red;
+        }
+
+        ul#all-links {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0;
+            list-style: none;
         }
     </style>
 </head>
@@ -28,15 +35,17 @@
 
     <h1 id="heading">Redirecting...</h1>
     <p id="message"></a> </p>
+    <ul id="all-links"></ul>
 
     <script>
         const heading = document.getElementById("heading");
         const message = document.getElementById("message");
+        const allLinks = document.getElementById("allLinks");
 
         const links = {
             // Website
-            "blog": "http://gauravsachdeva.in",
-            "portfolio": "http://gauravsachdeva.in",
+            "blog": "https://gauravsachdeva.in",
+            "portfolio": "https://gauravsachdeva.in",
             "static": "http://static.gauravsachdeva.in",
 
             // Social Links
@@ -66,7 +75,7 @@
             if (links[page]) {
                 const url = `${links[page]}${path}/?ref=redirect`
 
-                message.innerHTML = `If you are not redirected automatically, please <a href="${url}">click here.`
+                message.innerHTML = `If you are not redirected automatically, please <a href="${url}">click here.</a>`
                 window.location.href = url;
             } else {
                 throw new Error(`The page "${page}" does not exist.`);
@@ -79,6 +88,10 @@
             document.body.classList.add("has-error");
             heading.innerText = "Error";
             message.innerText = error.message;
+            allLinks.innerHTML = Object
+                .entries(links)
+                .map(([key, link]) => `<li id="link-${key}"><a href="${link}">${key}</a></li>`)
+                .join("");
         }
     </script>
 </body>
