@@ -16,16 +16,21 @@
         body {
             margin: 10px 20px;
         }
+
+        .has-error h1 {
+            color: red;
+        }
     </style>
 </head>
 
 <body>
     <noscript>This page requires JavaScript to run. Please enable and try refreshing this page.</noscript>
 
-    <h1>Redirecting...</h1>
+    <h1 id="heading">Redirecting...</h1>
     <p id="message"></a> </p>
 
     <script>
+        const heading = document.getElementById("heading");
         const message = document.getElementById("message");
 
         const links = {
@@ -71,6 +76,8 @@
         try {
             redirect();
         } catch (error) {
+            document.body.classList.add("has-error");
+            heading.innerText = "Error";
             message.innerText = error.message;
         }
     </script>
